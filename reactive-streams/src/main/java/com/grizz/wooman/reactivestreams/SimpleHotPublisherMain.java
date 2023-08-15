@@ -40,6 +40,6 @@ public class SimpleHotPublisherMain {
         subscriber4.cancel();
 
         // shutdown publisher
-        //publisher.shutdown();
+        publisher.shutdown();
     }
 }
