@@ -12,6 +12,7 @@
         <module name="reactor-pattern" />
         <module name="reactive-streams" />
         <module name="completable-future" />
+        <module name="netty-server" />
       </profile>
     </annotationProcessing>
   </component>
