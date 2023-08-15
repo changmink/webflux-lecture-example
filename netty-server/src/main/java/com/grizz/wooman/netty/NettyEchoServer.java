@@ -20,6 +20,33 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class NettyEchoServer {
     public static void main(String[] args) {
+        EventLoopGroup acceptEventGroup = new NioEventLoopGroup();
+        EventLoopGroup readEventGroup = new NioEventLoopGroup();
+        EventExecutorGroup eventExecutorGroup = new DefaultEventLoopGroup();
+        try {
+            ServerBootstrap serverBootstrap = new ServerBootstrap();
+            serverBootstrap.group(acceptEventGroup, readEventGroup);
+            serverBootstrap.channel(NioServerSocketChannel.class);
+            serverBootstrap.childHandler(new ChannelInitializer<>(){
+                @Override
+                protected void initChannel(Channel channel) throws Exception {
+                    channel.pipeline().addLast(eventExecutorGroup, new LoggingHandler(LogLevel.INFO));
+                    channel.pipeline().addLast(new StringDecoder(), new StringEncoder(), new NettyEchoServerHandler());
+                }
+            });
 
+            serverBootstrap.bind(8080).sync()
+                    .addListener(future -> {
+                        if (future.isSuccess()) {
+                            log.info("Success");
+                        }
+                    }).channel().closeFuture().sync();
+
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            acceptEventGroup.shutdownGracefully();
+            readEventGroup.shutdownGracefully();
+        }
     }
 }

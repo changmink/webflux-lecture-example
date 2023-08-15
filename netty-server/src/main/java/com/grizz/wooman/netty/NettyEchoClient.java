@@ -14,6 +14,23 @@ import lombok.SneakyThrows;
 public class NettyEchoClient {
     @SneakyThrows
     public static void main(String[] args) {
+        EventLoopGroup workerGroup = new NioEventLoopGroup(1);
 
+        try {
+            Bootstrap bootstrap = new Bootstrap();
+            var client = bootstrap.group(workerGroup)
+                    .channel(NioSocketChannel.class)
+                    .handler(new ChannelInitializer<>() {
+                        @Override
+                        protected void initChannel(Channel channel) throws Exception {
+                            channel.pipeline().addLast(new LoggingHandler(), new StringEncoder(),
+                                    new StringDecoder(), new NettyEchoClientHandler());
+                        }
+                    });
+            client.connect("localhost", 8080).sync()
+                    .channel().closeFuture().sync();
+        } finally {
+            workerGroup.shutdownGracefully();
+        }
     }
 }
