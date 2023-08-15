@@ -40,7 +40,7 @@ public class SocketChannelMultiClient {
 //                            log.info("resp: {}", StandardCharsets.UTF_8.decode(res));
                             res.clear();
                         }
-                        counter.incrementAndGet();
+                        log.info("count: {}", counter.incrementAndGet());
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
