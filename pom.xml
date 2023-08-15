@@ -13,6 +13,7 @@
         <module>reactive-streams</module>
         <module>nio-server</module>
         <module>selector-server</module>
+        <module>reactor-pattern</module>
     </modules>
     <dependencies>
         <dependency>
