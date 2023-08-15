@@ -7,8 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="reactive-streams" />
         <module name="nio-server" />
+        <module name="selector-server" />
+        <module name="reactive-streams" />
         <module name="completable-future" />
       </profile>
     </annotationProcessing>

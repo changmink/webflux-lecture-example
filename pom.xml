@@ -12,6 +12,7 @@
         <module>completable-future</module>
         <module>reactive-streams</module>
         <module>nio-server</module>
+        <module>selector-server</module>
     </modules>
     <dependencies>
         <dependency>
