@@ -19,6 +19,7 @@ public class Acceptor implements EventHandler {
     @SneakyThrows
     public void handle() {
         SocketChannel clientSocket = socketChannel.accept();
-        new TcpEventHandler(clientSocket, selector);
+        //new TcpEventHandler(clientSocket, selector);
+        new HttpEventHandler(clientSocket, selector);
     }
 }
