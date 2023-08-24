@@ -9,8 +9,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="nio-server" />
         <module name="selector-server" />
-        <module name="reactor-pattern" />
         <module name="reactive-streams" />
+        <module name="reactor" />
+        <module name="reactor-pattern" />
         <module name="completable-future" />
         <module name="netty-server" />
       </profile>
