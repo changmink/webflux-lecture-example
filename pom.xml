@@ -15,6 +15,7 @@
         <module>selector-server</module>
         <module>reactor-pattern</module>
         <module>netty-server</module>
+        <module>reactor</module>
     </modules>
     <dependencies>
         <dependency>
